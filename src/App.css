@@ -11,8 +11,9 @@ body {
 .app-container {
   display: flex;
   justify-content: center;
-  max-width: 1366px;
   height: 768px;
   background: #ffffff;
-  margin: 90px 50px;
+}
+.banner-container{
+  margin-top: 90px;
 }

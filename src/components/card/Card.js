@@ -1,6 +1,7 @@
 import CardTitle from "./CardTitle";
 import ArrowIcon from "../common/ArrowIcon";
 import Button from "../button/Button";
+import { Link } from "react-router-dom";
 
 const Card = () => {
   return (
@@ -25,9 +26,7 @@ const Card = () => {
       </div>
       <Button
         btnContent={
-          <a href="https://www.buymeacoffee.com/drax" rel="noopener noreferrer">
-            Buy me a Coffee
-          </a>
+          <Link to="/register">Buy me a Coffee</Link>
         }
       />
     </div>
