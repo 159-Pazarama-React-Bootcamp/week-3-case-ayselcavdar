@@ -1,0 +1,21 @@
+.formItem {
+  width: 400px;
+  height: 50px;
+  background: #ffffff;
+  border: 1px solid #bcbec0;
+  box-sizing: border-box;
+  border-radius: 40px;
+  
+}
+
+.formLabel {
+  width: 34px;
+  height: 16px;
+  margin-top: 56px;
+  font-family: Gilroy;
+  font-size: 14px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  color: #414042;
+}
