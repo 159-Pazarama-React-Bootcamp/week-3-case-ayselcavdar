@@ -1,15 +1,17 @@
-
-import Card from './components/card/Card';
-import SvgBanner from './components/common/Banner';
 import './App.css'
+import { Routes, Route } from "react-router-dom";
+import Home from './pages/Home';
+import Auth from './pages/Auth';
+
+
 
 function App() {
   return (
-    <div className='app-container'>
-      <Card />
-      <div className='banner-container'>
-        <SvgBanner/>
-      </div>
+    <div className="app-container">
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="register" element={<Auth />} />
+      </Routes>
     </div>
   );
 }
