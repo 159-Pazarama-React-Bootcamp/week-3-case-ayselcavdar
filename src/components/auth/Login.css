@@ -1,0 +1,89 @@
+.loginInput {
+  width: 100%;
+  height: 849px;
+  filter: drop-shadow(0px 4px 70px rgba(0, 0, 0, 0.1));
+  display: flex;
+    justify-content: space-around;
+}
+.input-container{
+    margin: 112px 0px 0px 98px;
+}
+
+.loginBanner {
+  width: 100%;
+  height: 849px;
+  background: url("../../assets/img/avatar.png");
+  border-radius: 40px;
+}
+
+.signInBtn {
+  width: 400px;
+  height: 50px;
+  background: #a93159;
+  border-radius: 40px;
+  color: #ffffff;
+}
+
+.logo {
+  width: 105px;
+  height: 29px;
+  font-family: Gilroy;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 29px;
+  display: flex;
+  align-items: center;
+  color: #465685;
+  margin-bottom: 13px;
+}
+
+.login {
+  width: 96px;
+  height: 46px;
+  font-size: 38px;
+  line-height: 46px;
+  color: #414042;
+}
+
+.forgetPassword {
+  width: 98px;
+  height: 14px;
+  margin-top: 17px;
+  margin-bottom: 42px;
+  font-family: Gilroy;
+  font-size: 12px;
+  line-height: 14px;
+  /* identical to box height */
+  display: flex;
+  align-items: center;
+  color: #465685;
+}
+
+.loginWith {
+  text-align: center;
+  width: 103px;
+  height: 16px;
+  font-family: Gilroy;
+  font-size: 14px;
+  line-height: 16px;
+  margin-top: 45px;
+  margin-bottom: 16px;
+  color: #798995;
+}
+.icon-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 12px;
+}
+.icon-item {
+  width: 125px;
+  height: 50px;
+  background: #ffffff;
+  border: 1px solid #bcbec0;
+  box-sizing: border-box;
+  border-radius: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
