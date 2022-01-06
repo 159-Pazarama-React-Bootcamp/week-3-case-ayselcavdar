@@ -9,7 +9,8 @@ function App() {
   return (
     <div className="app-container">
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" exact element={<Home />} />
+        <Route path="login" element={<Auth />} />
         <Route path="register" element={<Auth />} />
       </Routes>
     </div>
