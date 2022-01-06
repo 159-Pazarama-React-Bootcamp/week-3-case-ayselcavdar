@@ -26,7 +26,7 @@ const Card = () => {
       </div>
       <Button
         btnContent={
-          <Link to="/register">Buy me a Coffee</Link>
+          <Link to="/login">Buy me a Coffee</Link>
         }
       />
     </div>

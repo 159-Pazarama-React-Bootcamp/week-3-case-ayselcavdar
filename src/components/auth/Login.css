@@ -3,10 +3,10 @@
   height: 849px;
   filter: drop-shadow(0px 4px 70px rgba(0, 0, 0, 0.1));
   display: flex;
-    justify-content: space-around;
+  justify-content: space-around;
 }
-.input-container{
-    margin: 112px 0px 0px 98px;
+.input-container {
+  margin: 112px 0px 0px 98px;
 }
 
 .loginBanner {
@@ -60,9 +60,8 @@
 }
 
 .loginWith {
-  text-align: center;
-  width: 103px;
-  height: 16px;
+  display: flex;
+  justify-content: center;
   font-family: Gilroy;
   font-size: 14px;
   line-height: 16px;
@@ -86,4 +85,36 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.errorMessage {
+  font-size: 12px;
+  padding: 3px;
+  color: red;
+  display: none;
+}
+
+.freeRegisterContainer {
+  display: flex;
+  justify-content: center;
+  margin: 5px 0px;
+  font-size: 14px;
+  font-family: Gilroy;
+}
+.hasAccount{
+  height: 16px;
+  line-height: 16px;
+  margin-top: 32px;
+  color: #bcbec0;
+}
+
+.freeRegister {
+  display: inline-block;
+  margin-left: 5px;
+  width: 103px;
+  height: 17px;
+  font-weight: 600;
+  line-height: 17px;
+  color: #465685;
+  cursor: pointer;
 }

@@ -19,3 +19,17 @@
   align-items: center;
   color: #414042;
 }
+input {
+  padding-left: 15px;
+}
+input::placeholder{
+  margin: 15px 0px;
+}
+
+input:invalid[focused="true"]{
+  border: 1px solid red;
+}
+
+input:invalid[focused="true"] ~ span {
+  display: block;
+}
