@@ -5,9 +5,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { logout, useAuth } from "../../firebase";
 
 const Card = () => {
+  // login olmuş kullanıcıyı kontrol etmek için custom hook'dan yararlanıyoruz
   const currUser = useAuth();
+  // logout sonrası navigate işlemi için
   const history = useNavigate();
 
+  // logout butonu tetiklendiğinde çalışacak handler
   const handleLogout = async () => {
     try {
       await logout();
@@ -16,6 +19,7 @@ const Card = () => {
       alert(error);
     }
   };
+
   return (
     <div className="card-container">
       <CardTitle title={"Hello 👋"} />
