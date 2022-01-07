@@ -9,6 +9,8 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   GoogleAuthProvider,
+  FacebookAuthProvider,
+  GithubAuthProvider,
 } from "firebase/auth";
 
 // Your web app's Firebase configuration
@@ -28,10 +30,16 @@ const auth = getAuth(app);
 export const signup = (email, password) => createUserWithEmailAndPassword(auth, email, password);
 
 export const signin = (email, password) => signInWithEmailAndPassword(auth, email, password);
-//Social Authentication
 
-const provider = new GoogleAuthProvider();
-export const signInWithGoogle = () => signInWithPopup(auth, provider);
+//Social Authentication
+const googleProvider = new GoogleAuthProvider();
+export const signInWithGoogle = () => signInWithPopup(auth, googleProvider);
+
+const facebookProvider = new FacebookAuthProvider();
+export const signInWithFacebook = () => signInWithPopup(auth,facebookProvider)
+
+const githubProvider = new GithubAuthProvider();
+export const signInWithGithub = () => signInWithPopup(auth, githubProvider);
 
 export const logout = () => signOut(auth);
 

@@ -5,7 +5,14 @@ import GoogleIcon from "../common/GoogleIcon";
 import FacebookIcon from "../common/FacebookIcon";
 import "./Login.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { signin, signup, useAuth, signInWithGoogle } from "../../firebase";
+import {
+  signin,
+  signup,
+  useAuth,
+  signInWithGoogle,
+  signInWithFacebook,
+  signInWithGithub,
+} from "../../firebase";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -13,11 +20,18 @@ const Login = () => {
     email: "",
     password: "",
   });
+  // custom hook ile sisteme kayıtlı ya da login olmuş kullanıcı alıyoruz
   const currUser = useAuth();
 
+  // history başarılı şekilde login veya register işlemi sonrası,
+  // kullanıcıyı gerekli sayfalara yönlendirmemiz için
   const history = useNavigate();
+
+  // anlık url'i kontrol edip login veya register durumuna göre başlık buton vb
+  // değişiklikleri anlık yansıtacağımız objeye ulaşıyoruz
   const { pathname } = useLocation();
 
+  // input field propertileri
   const inputs = [
     {
       id: 1,
@@ -41,6 +55,7 @@ const Login = () => {
     },
   ];
 
+  // email ve password ile yapılan register işleminden sorumlu handler
   const handleSigup = async () => {
     try {
       setLoading(true);
@@ -51,16 +66,8 @@ const Login = () => {
     }
     setLoading(false);
   };
-
-  const handleGoogleSignup = async () => {
-    try {
-      const response = await signInWithGoogle();
-      response && history("/");
-    } catch (err) {
-      alert(err.message);
-    }
-  };
-
+  
+  // email ve password ile yapılan login işleminden sorumlu handler
   const handleSigin = async () => {
     try {
       setLoading(true);
@@ -70,6 +77,34 @@ const Login = () => {
       alert(err.message);
     }
     setLoading(false);
+  };
+
+  // social signup handlers
+  const handleGoogleSignup = async () => {
+    try {
+      const response = await signInWithGoogle();
+      response && history("/");
+    } catch (err) {
+      alert(err.message);
+    }
+  };
+
+  const handleFacebookSignup = async () => {
+    try {
+      const response = await signInWithFacebook();
+      response && history("/");
+    } catch (err) {
+      alert(err.message);
+    }
+  };
+
+  const handleGithubSignup = async () => {
+    try {
+      const response = await signInWithGithub();
+      response && history("/");
+    } catch (err) {
+      alert(err.message);
+    }
   };
 
   const handleSubmit = (e) => {
@@ -126,10 +161,10 @@ const Login = () => {
           <div className="icon-item" onClick={handleGoogleSignup}>
             <GoogleIcon />
           </div>
-          <div className="icon-item">
+          <div className="icon-item" onClick={handleGithubSignup}>
             <GithubIcon />
           </div>
-          <div className="icon-item">
+          <div className="icon-item" onClick={handleFacebookSignup}>
             <FacebookIcon />
           </div>
         </div>
