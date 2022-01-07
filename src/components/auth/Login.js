@@ -4,15 +4,19 @@ import GithubIcon from "../common/GithubIcon";
 import GoogleIcon from "../common/GoogleIcon";
 import FacebookIcon from "../common/FacebookIcon";
 import "./Login.css";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { signin, signup, useAuth, signInWithGoogle } from "../../firebase";
 
 const Login = () => {
+  const [loading, setLoading] = useState(false);
   const [values, setValues] = useState({
     email: "",
     password: "",
   });
+  const currUser = useAuth();
 
-  const { pathname } = useLocation()
+  const history = useNavigate();
+  const { pathname } = useLocation();
 
   const inputs = [
     {
@@ -37,8 +41,40 @@ const Login = () => {
     },
   ];
 
+  const handleSigup = async () => {
+    try {
+      setLoading(true);
+      await signup(values.email, values.password);
+      history("/login");
+    } catch (err) {
+      alert(err.message);
+    }
+    setLoading(false);
+  };
+
+  const handleGoogleSignup = async () => {
+    try {
+      const response = await signInWithGoogle();
+      response && history("/");
+    } catch (err) {
+      alert(err.message);
+    }
+  };
+
+  const handleSigin = async () => {
+    try {
+      setLoading(true);
+      await signin(values.email, values.password);
+      history("/");
+    } catch (err) {
+      alert(err.message);
+    }
+    setLoading(false);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    pathname.includes("/login") ? handleSigin() : handleSigup();
   };
 
   const onChange = (e) => {
@@ -48,8 +84,14 @@ const Login = () => {
   return (
     <div className="loginInput">
       <div className="input-container">
-        <p className="logo">Your logo</p>
-        <p className="logo login">{pathname.includes('/register') ? "Register" : "Login"}</p>
+        <p className="logo">
+          {currUser && pathname.includes("/login")
+            ? "You registered as " + currUser?.email
+            : "Your logo"}
+        </p>
+        <p className="logo login">
+          {pathname.includes("/register") ? "Register" : "Login"}
+        </p>
         <form onSubmit={handleSubmit}>
           {inputs.map((input) => (
             <FormInput
@@ -60,11 +102,28 @@ const Login = () => {
             />
           ))}
           <span className="forgetPassword">Forgot Password?</span>
-          <button className="signInBtn">{pathname.includes('/register') ? "Sign Up" : "Sign in"}</button>
+          <button
+            disabled={(loading || currUser) && pathname.includes("/register")}
+            className="signInBtn"
+            type="submit"
+            style={{
+              cursor:
+                (loading || currUser) &&
+                pathname.includes("/register") &&
+                "not-allowed ",
+            }}
+            title={
+              (loading || currUser) && pathname.includes("/register")
+                ? "You already logged in"
+                : ""
+            }
+          >
+            {pathname.includes("/register") ? "Sign Up" : "Sign in"}
+          </button>
         </form>
         <p className="loginWith">or continue with</p>
         <div className="icon-container">
-          <div className="icon-item">
+          <div className="icon-item" onClick={handleGoogleSignup}>
             <GoogleIcon />
           </div>
           <div className="icon-item">

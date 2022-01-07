@@ -22,10 +22,10 @@
   background: #a93159;
   border-radius: 40px;
   color: #ffffff;
+  cursor: pointer;
 }
 
 .logo {
-  width: 105px;
   height: 29px;
   font-family: Gilroy;
   font-weight: bold;
@@ -85,6 +85,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .errorMessage {
