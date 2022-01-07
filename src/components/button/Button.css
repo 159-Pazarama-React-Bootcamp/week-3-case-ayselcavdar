@@ -7,15 +7,13 @@
   justify-content: center;
   align-items: center;
 }
-.btn-container > a {
+.btn-container > a, #logout {
   width: 208px;
   height: 41px;
   font-weight: bold;
   font-size: 25px;
   line-height: 163.8%;
-  /* identical to box height, or 41px */
-
   text-decoration-line: underline;
-
   color: #ffffff;
+  cursor: pointer;
 }

@@ -1,9 +1,21 @@
 import CardTitle from "./CardTitle";
 import ArrowIcon from "../common/ArrowIcon";
 import Button from "../button/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { logout, useAuth } from "../../firebase";
 
 const Card = () => {
+  const currUser = useAuth();
+  const history = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      history("login");
+    } catch (error) {
+      alert(error);
+    }
+  };
   return (
     <div className="card-container">
       <CardTitle title={"Hello 👋"} />
@@ -25,8 +37,13 @@ const Card = () => {
         <ArrowIcon />
       </div>
       <Button
+        onClick={handleLogout}
         btnContent={
-          <Link to="/login">Buy me a Coffee</Link>
+          currUser?.email ? (
+            <span id="logout">logout</span>
+          ) : (
+            <Link to="/login">Buy me a Coffee</Link>
+          )
         }
       />
     </div>
