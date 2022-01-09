@@ -31,6 +31,8 @@ const Login = () => {
   // değişiklikleri anlık yansıtacağımız objeye ulaşıyoruz
   const { pathname } = useLocation();
 
+  const isLogin = pathname.includes("/login");
+  const isRegister = pathname.includes("/register");
   // input field propertileri
   const inputs = [
     {
@@ -50,13 +52,13 @@ const Login = () => {
       errorMessage:
         "Password should be 8-20 characters and include at list 1 letter, 1 number and 1 special character",
       label: "Password",
-      pattern: `^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,20}$`,
+      pattern: `^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&.*_=+-]).{8,20}$`,
       required: true,
     },
   ];
 
   // email ve password ile yapılan register işleminden sorumlu handler
-  const handleSigup = async () => {
+  const handleSignup = async () => {
     try {
       setLoading(true);
       await signup(values.email, values.password);
@@ -68,7 +70,7 @@ const Login = () => {
   };
   
   // email ve password ile yapılan login işleminden sorumlu handler
-  const handleSigin = async () => {
+  const handleSignin = async () => {
     try {
       setLoading(true);
       await signin(values.email, values.password);
@@ -109,7 +111,7 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    pathname.includes("/login") ? handleSigin() : handleSigup();
+    isLogin ? handleSignin() : handleSignup();
   };
 
   const onChange = (e) => {
@@ -120,12 +122,12 @@ const Login = () => {
     <div className="loginInput">
       <div className="input-container">
         <p className="logo">
-          {currUser && pathname.includes("/login")
+          {currUser && isLogin
             ? "You registered as " + currUser?.email
             : "Your logo"}
         </p>
         <p className="logo login">
-          {pathname.includes("/register") ? "Register" : "Login"}
+          {isRegister ? "Register" : "Login"}
         </p>
         <form onSubmit={handleSubmit}>
           {inputs.map((input) => (
@@ -138,22 +140,22 @@ const Login = () => {
           ))}
           <span className="forgetPassword">Forgot Password?</span>
           <button
-            disabled={(loading || currUser) && pathname.includes("/register")}
+            disabled={(loading || currUser) && isRegister}
             className="signInBtn"
             type="submit"
             style={{
               cursor:
                 (loading || currUser) &&
-                pathname.includes("/register") &&
+                isRegister &&
                 "not-allowed ",
             }}
             title={
-              (loading || currUser) && pathname.includes("/register")
+              (loading || currUser) && isRegister
                 ? "You already logged in"
                 : ""
             }
           >
-            {pathname.includes("/register") ? "Sign Up" : "Sign in"}
+            {isRegister ? "Sign Up" : "Sign in"}
           </button>
         </form>
         <p className="loginWith">or continue with</p>
