@@ -1,0 +1,19 @@
+.btn-container {
+  background: linear-gradient(0deg, #ea5050 0%, #ee745b 100%);
+  width: 530px;
+  height: 90px;
+  border-radius: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn-container > a, #logout {
+  width: 208px;
+  height: 41px;
+  font-weight: bold;
+  font-size: 25px;
+  line-height: 163.8%;
+  text-decoration-line: underline;
+  color: #ffffff;
+  cursor: pointer;
+}
